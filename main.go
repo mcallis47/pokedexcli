@@ -390,6 +390,11 @@ func main() {
 			description: "Inspect a Pokemon",
 			callback:    commandInspect,
 		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "list caught pokemon",
+			callback:    commandPokedex,
+		},
 	}
 	curConfig = config{
 		Next:     "",
@@ -426,6 +431,14 @@ func commandHelp(con *config) error {
 	fmt.Println("Welcome to the Pokedex!\nUsage:")
 	for _, command := range commands {
 		fmt.Printf("%s: %s\n", command.name, command.description)
+	}
+	return nil
+}
+
+func commandPokedex(con *config) error {
+	fmt.Println("Your Pokedex:")
+	for pokemon := range pokedex {
+		fmt.Println(" -", pokemon)
 	}
 	return nil
 }
